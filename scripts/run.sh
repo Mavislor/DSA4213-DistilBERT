@@ -1,13 +1,6 @@
 #!/bin/bash
 
-# Medical Tweet Classification Experiment
-# Run this script to reproduce the experiments
-
 echo "Setting up Medical Tweet Classification Experiment..."
-
-# Use python3 directly 
-echo "Python version:"
-python3 --version
 
 # Install dependencies
 echo "Installing dependencies..."

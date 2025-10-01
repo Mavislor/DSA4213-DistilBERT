@@ -15,9 +15,7 @@ This repository contains code for comparing different fine-tuning strategies (Fu
   - LoRA (Low-Rank Adaptation)
 
 ## Repository Structure
- - README.md
  - requirements.txt
- - run_experiment.py
  - config
     - default_config.py
  - src
@@ -28,3 +26,14 @@ This repository contains code for comparing different fine-tuning strategies (Fu
    - utils.py
  - scripts
    - run.sh
+ - run_experiment.py
+ - README.md
+
+
+
+## Quick Start
+
+### Using the provided script
+```bash
+chmod +x scripts/run.sh
+./scripts/run.sh

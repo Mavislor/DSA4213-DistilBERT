@@ -28,6 +28,6 @@ class Config:
     LOGGING_DIR = "./logs"
     
     # Experiment settings
-    SEED = 42
-    TRAIN_SIZE = 0.8  # For train/val split if needed
+    SEED = 7951  
+    TRAIN_SIZE = 0.8 
     VAL_SIZE = 0.2

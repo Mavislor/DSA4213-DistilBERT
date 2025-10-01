@@ -41,7 +41,7 @@ chmod +x scripts/run.sh
 
 ## Dataset
 
-The project uses the [CardiffNLP Tweet Topic Single]([url](https://huggingface.co/datasets/cardiffnlp/tweet_topic_single)) dataset from Hugging Face. The original multi-class topic classification is adapted to binary classification:
+The project uses the [CardiffNLP Tweet Topic Single](https://huggingface.co/datasets/cardiffnlp/tweet_topic_single) dataset from Hugging Face. The original multi-class topic classification is adapted to binary classification:
 
 Label 1: Medical/Health tweets
 

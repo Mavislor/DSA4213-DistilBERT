@@ -10,22 +10,18 @@ This project uses the **Diseases Articles** dataset from Kaggle:
 
 ### Setup Instructions
 
-#### Option 1: Automatic Download 
-The script will automatically download the dataset using the Kaggle API:
+#### Option 1: From data file 
+Simply run this script:
 
 ```bash
-# Install kaggle API
-pip install kaggle
-
-# Set up Kaggle API credentials
-# 1. Go to https://www.kaggle.com/settings and create API token
-# 2. Download kaggle.json
-# 3. Place it in ~/.kaggle/ directory
-
-mkdir -p ~/.kaggle
-cp kaggle.json ~/.kaggle/
-chmod 600 ~/.kaggle/kaggle.json
+./scripts/run.sh
 ```
+The script will:
+- Skip the download step (since the file already exists)
+- Load your CSV file from data/diseases_articles.csv
+- Preprocess the data - automatically detect the structure and create binary labels
+- Train both models - Full fine-tuning and LoRA
+- Generate results - Compare both strategies
 
 #### Option 2: Synthetic Data
 If the download fails, the code will automatically create a synthetic medical dataset for testing.
@@ -37,6 +33,8 @@ Run the script:
 
 ## Repository Structure
  - requirements.txt
+ - data
+    - diseases_articles.csv
  - config
     - default_config.py
  - src

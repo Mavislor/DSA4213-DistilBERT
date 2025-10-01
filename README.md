@@ -37,3 +37,12 @@ This repository contains code for comparing different fine-tuning strategies (Fu
 ```bash
 chmod +x scripts/run.sh
 ./scripts/run.sh
+```
+
+## Dataset
+
+The project uses the CardiffNLP Tweet Topic Single dataset from Hugging Face. The original multi-class topic classification is adapted to binary classification:
+
+Label 1: Medical/Health tweets
+
+Label 0: All other topics

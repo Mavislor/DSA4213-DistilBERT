@@ -25,7 +25,6 @@ class MedicalTweetTrainer:
         
         accuracy = self.metric.compute(predictions=predictions, references=labels)
         
-        # Additional metrics
         from sklearn.metrics import f1_score, precision_score, recall_score
         f1 = f1_score(labels, predictions, average='weighted')
         precision = precision_score(labels, predictions, average='weighted')
@@ -40,25 +39,46 @@ class MedicalTweetTrainer:
     
     def get_training_arguments(self, strategy_name):
         """Get training arguments for different strategies"""
-        return TrainingArguments(
-            output_dir=f"{self.config.OUTPUT_DIR}/{strategy_name}",
-            overwrite_output_dir=True,
-            learning_rate=self.config.LEARNING_RATE,
-            per_device_train_batch_size=self.config.BATCH_SIZE,
-            per_device_eval_batch_size=self.config.BATCH_SIZE,
-            num_train_epochs=self.config.NUM_EPOCHS,
-            weight_decay=self.config.WEIGHT_DECAY,
-            warmup_steps=self.config.WARMUP_STEPS,
-            logging_dir=f"{self.config.LOGGING_DIR}/{strategy_name}",
-            logging_steps=100,
-            evaluation_strategy="epoch",
-            save_strategy="epoch",
-            load_best_model_at_end=True,
-            metric_for_best_model="eval_f1",
-            greater_is_better=True,
-            seed=self.config.SEED,
-            report_to="tensorboard",
-        )
+        try:
+            return TrainingArguments(
+                output_dir=f"{self.config.OUTPUT_DIR}/{strategy_name}",
+                overwrite_output_dir=True,
+                learning_rate=self.config.LEARNING_RATE,
+                per_device_train_batch_size=self.config.BATCH_SIZE,
+                per_device_eval_batch_size=self.config.BATCH_SIZE,
+                num_train_epochs=self.config.NUM_EPOCHS,
+                weight_decay=self.config.WEIGHT_DECAY,
+                warmup_steps=self.config.WARMUP_STEPS,
+                logging_dir=f"{self.config.LOGGING_DIR}/{strategy_name}",
+                logging_steps=100,
+                eval_strategy="epoch",  
+                save_strategy="epoch",
+                load_best_model_at_end=True,
+                metric_for_best_model="eval_f1",
+                greater_is_better=True,
+                seed=self.config.SEED,
+                report_to="tensorboard",
+            )
+        except TypeError:
+            return TrainingArguments(
+                output_dir=f"{self.config.OUTPUT_DIR}/{strategy_name}",
+                overwrite_output_dir=True,
+                learning_rate=self.config.LEARNING_RATE,
+                per_device_train_batch_size=self.config.BATCH_SIZE,
+                per_device_eval_batch_size=self.config.BATCH_SIZE,
+                num_train_epochs=self.config.NUM_EPOCHS,
+                weight_decay=self.config.WEIGHT_DECAY,
+                warmup_steps=self.config.WARMUP_STEPS,
+                logging_dir=f"{self.config.LOGGING_DIR}/{strategy_name}",
+                logging_steps=100,
+                evaluation_strategy="epoch",  
+                save_strategy="epoch",
+                load_best_model_at_end=True,
+                metric_for_best_model="eval_f1",
+                greater_is_better=True,
+                seed=self.config.SEED,
+                report_to="tensorboard",
+            )
     
     def train_model(self, model, tokenized_datasets, tokenizer, strategy_name):
         """Train the model with the given strategy"""
@@ -77,8 +97,10 @@ class MedicalTweetTrainer:
             callbacks=[EarlyStoppingCallback(early_stopping_patience=2)],
         )
         
+        # Train the model
         train_result = trainer.train()
         
+        # Save the model
         trainer.save_model()
         trainer.log_metrics("train", train_result.metrics)
         trainer.save_metrics("train", train_result.metrics)

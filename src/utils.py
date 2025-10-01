@@ -16,19 +16,21 @@ def set_seed(seed: int = 7951):
         torch.cuda.manual_seed(seed)
         torch.cuda.manual_seed_all(seed)
 
-
 def print_experiment_summary(config: Config, label_distribution):
+    """Print experiment summary"""
     print("=" * 60)
     print("EXPERIMENT SETUP")
     print("=" * 60)
     print(f"Model: {config.MODEL_NAME}")
-    print(f"Dataset: {config.DATASET_NAME}")
-    print(f"Task: Binary Classification (Medical vs Non-Medical Tweets)")
+    print(f"Dataset: Diseases Articles (from CSV)")
+    print(f"Task: Binary Classification (Medical Articles)")
     print(f"Training samples: {len(label_distribution['train'])}")
     print(f"Validation samples: {len(label_distribution['validation'])}")
     print(f"Test samples: {len(label_distribution['test'])}")
     print(f"Label distribution - Train: {dict(label_distribution['train'])}")
     print(f"Label distribution - Validation: {dict(label_distribution['validation'])}")
+    print(f"Label distribution - Test: {dict(label_distribution['test'])}")
+    print(f"Text column: {config.TEXT_COLUMN}")
     print(f"Random Seed: {config.SEED}")
     print("=" * 60)
 

@@ -1,0 +1,24 @@
+{
+  "full_finetuning": {
+    "eval_loss": 0.4257234036922455,
+    "eval_accuracy": 0.7968197879858657,
+    "eval_f1": 0.7939322562977456,
+    "eval_precision": 0.8144444444444443,
+    "eval_recall": 0.7968197879858657,
+    "eval_runtime": 1.4613,
+    "eval_samples_per_second": 387.319,
+    "eval_steps_per_second": 24.635,
+    "epoch": 3.0
+  },
+  "lora_finetuning": {
+    "eval_loss": 0.5791594982147217,
+    "eval_accuracy": 0.6925795053003534,
+    "eval_f1": 0.6921143457382953,
+    "eval_precision": 0.6937503925632812,
+    "eval_recall": 0.6925795053003534,
+    "eval_runtime": 1.4089,
+    "eval_samples_per_second": 401.742,
+    "eval_steps_per_second": 25.553,
+    "epoch": 3.0
+  }
+}

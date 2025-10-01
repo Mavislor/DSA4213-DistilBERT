@@ -5,16 +5,16 @@
 
 echo "Setting up Medical Tweet Classification Experiment..."
 
-# Create virtual environment (optional)
-# python -m venv med_tweet_env
-# source med_tweet_env/bin/activate
+# Use python3 directly 
+echo "Python version:"
+python3 --version
 
 # Install dependencies
 echo "Installing dependencies..."
-pip install -r requirements.txt
+python3 -m pip install -r requirements.txt
 
 # Run the experiment
 echo "Starting experiment..."
-python run_experiment.py
+python3 run_experiment.py
 
 echo "Experiment completed! Check the outputs/ directory for results."

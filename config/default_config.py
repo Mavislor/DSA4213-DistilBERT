@@ -1,5 +1,5 @@
 """
-Configuration file for the medical tweet classification experiment
+Configuration file for the medical text classification experiment
 """
 
 class Config:
@@ -7,12 +7,12 @@ class Config:
     MODEL_NAME = "distilbert-base-uncased"
     NUM_LABELS = 2
     
-    # Dataset settings - Using a medical dataset
-    DATASET_NAME = "medical_dialog"
-    DATASET_CONFIG = "en"
-    TEXT_COLUMN = "description"
-    LABEL_COLUMN = "gender"  # for binary classification
-    MAX_LENGTH = 128
+    # Dataset settings 
+    DATASET_PATH = "./data/diseases_articles.csv"
+    KAGGLE_DATASET = "shyshcuk/diseases-articles"
+    TEXT_COLUMN = "text"
+    LABEL_COLUMN = "label"
+    MAX_LENGTH = 256
     BATCH_SIZE = 16
     
     # Training settings
@@ -29,8 +29,10 @@ class Config:
     # Paths
     OUTPUT_DIR = "./outputs"
     LOGGING_DIR = "./logs"
+    DATA_DIR = "./data"
     
     # Experiment settings
     SEED = 7951
-    TRAIN_SIZE = 0.8
-    VAL_SIZE = 0.2
+    TRAIN_SIZE = 0.7
+    VAL_SIZE = 0.15
+    TEST_SIZE = 0.15

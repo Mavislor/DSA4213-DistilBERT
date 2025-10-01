@@ -1,18 +1,39 @@
 # DSA4231-DistilBERT
-DistilBERT for Medical Sentiment Analysis
 
-# Medical Tweet Classification with Transformers
+## Dataset Setup
 
-This repository contains code for comparing different fine-tuning strategies (Full Fine-tuning vs LoRA) for adapting pretrained Transformer models to domain-specific text classification tasks.
+This project uses the **Diseases Articles** dataset from Kaggle:
 
-## Project Overview
+- **Dataset**: [Diseases Articles](https://www.kaggle.com/datasets/shyshcuk/diseases-articles)
+- **Description**: Collection of articles about various diseases
+- **Task**: Binary classification (Medical articles vs Non-medical texts)
 
-- **Task**: Binary text classification (Medical vs Non-Medical tweets)
-- **Model**: DistilBERT-base-uncased
-- **Dataset**: CardiffNLP Tweet Topic Single (adapted for medical classification)
-- **Fine-tuning Strategies**:
-  - Full Fine-tuning
-  - LoRA (Low-Rank Adaptation)
+### Setup Instructions
+
+#### Option 1: Automatic Download 
+The script will automatically download the dataset using the Kaggle API:
+
+```bash
+# Install kaggle API
+pip install kaggle
+
+# Set up Kaggle API credentials
+# 1. Go to https://www.kaggle.com/settings and create API token
+# 2. Download kaggle.json
+# 3. Place it in ~/.kaggle/ directory
+
+mkdir -p ~/.kaggle
+cp kaggle.json ~/.kaggle/
+chmod 600 ~/.kaggle/kaggle.json
+```
+
+#### Option 2: Synthetic Data
+If the download fails, the code will automatically create a synthetic medical dataset for testing.
+Run the script:
+
+```bash
+./scripts/run.sh
+```
 
 ## Repository Structure
  - requirements.txt
@@ -30,19 +51,3 @@ This repository contains code for comparing different fine-tuning strategies (Fu
  - README.md
 
 
-
-## Quick Start
-
-### Using the provided script
-```bash
-chmod +x scripts/run.sh
-./scripts/run.sh
-```
-
-## Dataset
-
-The project uses the [CardiffNLP Tweet Topic Single](https://huggingface.co/datasets/cardiffnlp/tweet_topic_single) dataset from Hugging Face. The original multi-class topic classification is adapted to binary classification:
-
-Label 1: Medical/Health tweets
-
-Label 0: All other topics

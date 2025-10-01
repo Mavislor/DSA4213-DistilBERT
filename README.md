@@ -11,7 +11,7 @@ This project uses the **Diseases Articles** dataset from Kaggle:
 
 ### Setup Instructions
 
-#### Option 1: From data file 
+#### From data file 
 Simply run this script:
 
 ```bash
@@ -24,13 +24,7 @@ The script will:
 - Train both models - Full fine-tuning and LoRA
 - Generate results - Compare both strategies
 
-#### Option 2: Synthetic Data
-If the download fails, the code will automatically create a synthetic medical dataset for testing.
-Run the script:
 
-```bash
-./scripts/run.sh
-```
 
 ## Repository Structure
  - requirements.txt

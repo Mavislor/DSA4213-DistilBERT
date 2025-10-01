@@ -143,55 +143,55 @@ class DataLoader:
             else:
                 return 0 
     
-       # Apply the labeling strategy
-       df['label'] = df.apply(create_binary_label, axis=1)
+        # Apply the labeling strategy
+        df['label'] = df.apply(create_binary_label, axis=1)
     
-       print(f"Processed dataset shape: {df.shape}")
-       print(f"Label distribution:\n{df['label'].value_counts()}")
+        print(f"Processed dataset shape: {df.shape}")
+        print(f"Label distribution:\n{df['label'].value_counts()}")
     
-       # If data is imbalanced, this code is to balance it
-       label_counts = df['label'].value_counts()
-       if len(label_counts) > 1:
-           min_count = label_counts.min()
-           balanced_dfs = []
-           for label in label_counts.index:
-               label_df = df[df['label'] == label]
-               if len(label_df) > min_count:
-                   label_df = label_df.sample(min_count, random_state=self.config.SEED)
-               balanced_dfs.append(label_df)
+        # If data is imbalanced, this code is to balance it
+        label_counts = df['label'].value_counts()
+        if len(label_counts) > 1:
+            min_count = label_counts.min()
+            balanced_dfs = []
+            for label in label_counts.index:
+                label_df = df[df['label'] == label]
+                if len(label_df) > min_count:
+                    label_df = label_df.sample(min_count, random_state=self.config.SEED)
+                balanced_dfs.append(label_df)
         
-           df = pd.concat(balanced_dfs, ignore_index=True)
-           print(f"Balanced dataset shape: {df.shape}")
-           print(f"Balanced label distribution:\n{df['label'].value_counts()}")
+            df = pd.concat(balanced_dfs, ignore_index=True)
+            print(f"Balanced dataset shape: {df.shape}")
+            print(f"Balanced label distribution:\n{df['label'].value_counts()}")
     
-       # Split the data
-       from sklearn.model_selection import train_test_split
-       train_df, temp_df = train_test_split(
-           df, 
-           test_size=self.config.VAL_SIZE + self.config.TEST_SIZE, 
-           random_state=self.config.SEED,
-           stratify=df['label']
-       )
-       val_df, test_df = train_test_split(
-           temp_df, 
-           test_size=self.config.TEST_SIZE/(self.config.VAL_SIZE + self.config.TEST_SIZE), 
-           random_state=self.config.SEED,
-           stratify=temp_df['label']
-       )
+        # Split the data
+        from sklearn.model_selection import train_test_split
+        train_df, temp_df = train_test_split(
+            df, 
+            test_size=self.config.VAL_SIZE + self.config.TEST_SIZE, 
+            random_state=self.config.SEED,
+            stratify=df['label']
+        )
+        val_df, test_df = train_test_split(
+            temp_df, 
+            test_size=self.config.TEST_SIZE/(self.config.VAL_SIZE + self.config.TEST_SIZE), 
+            random_state=self.config.SEED,
+            stratify=temp_df['label']
+        )
     
-       # Create Hugging Face dataset
-       dataset = DatasetDict({
-           'train': Dataset.from_pandas(train_df.reset_index(drop=True)),
-           'validation': Dataset.from_pandas(val_df.reset_index(drop=True)),
-           'test': Dataset.from_pandas(test_df.reset_index(drop=True))
-       })
+        # Create Hugging Face dataset
+        dataset = DatasetDict({
+            'train': Dataset.from_pandas(train_df.reset_index(drop=True)),
+            'validation': Dataset.from_pandas(val_df.reset_index(drop=True)),
+            'test': Dataset.from_pandas(test_df.reset_index(drop=True))
+        })
     
-       print(f"Dataset split: Train={len(train_df)}, Val={len(val_df)}, Test={len(test_df)}")
-       print(f"Label distribution - Train: {train_df['label'].value_counts().to_dict()}")
-       print(f"Label distribution - Val: {val_df['label'].value_counts().to_dict()}")
-       print(f"Label distribution - Test: {test_df['label'].value_counts().to_dict()}")
+        print(f"Dataset split: Train={len(train_df)}, Val={len(val_df)}, Test={len(test_df)}")
+        print(f"Label distribution - Train: {train_df['label'].value_counts().to_dict()}")
+        print(f"Label distribution - Val: {val_df['label'].value_counts().to_dict()}")
+        print(f"Label distribution - Test: {test_df['label'].value_counts().to_dict()}")
     
-       return dataset
+        return dataset
     
     def _tokenize_function(self, examples):
         """Tokenize the text examples"""

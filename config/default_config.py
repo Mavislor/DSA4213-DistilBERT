@@ -7,8 +7,11 @@ class Config:
     MODEL_NAME = "distilbert-base-uncased"
     NUM_LABELS = 2
     
-    # Dataset settings
-    DATASET_NAME = "cardiffnlp/tweet_topic_single"
+    # Dataset settings - Using a medical dataset
+    DATASET_NAME = "medical_dialog"
+    DATASET_CONFIG = "en"
+    TEXT_COLUMN = "description"
+    LABEL_COLUMN = "gender"  # for binary classification
     MAX_LENGTH = 128
     BATCH_SIZE = 16
     
@@ -28,6 +31,6 @@ class Config:
     LOGGING_DIR = "./logs"
     
     # Experiment settings
-    SEED = 7951  
-    TRAIN_SIZE = 0.8 
+    SEED = 7951
+    TRAIN_SIZE = 0.8
     VAL_SIZE = 0.2

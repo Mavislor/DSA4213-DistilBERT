@@ -24,22 +24,23 @@ The script will:
 - Generate results - Compare both strategies
 
 
-
 ## Repository Structure
  - requirements.txt
- - data
+ - data/
     - diseases_articles.csv
- - config
+ - config/
     - default_config.py
- - src
-   - __init__.py
+ - src/
+   - init.py
    - data_loader.py
    - model_setup.py
    - trainer.py
    - utils.py
- - scripts
+ - scripts/
    - run.sh
  - run_experiment.py
  - README.md
+
+
 
 

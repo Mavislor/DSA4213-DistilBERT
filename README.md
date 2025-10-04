@@ -18,7 +18,6 @@ Simply run this script:
 ./scripts/run.sh
 ```
 The script will:
-- Skip the download step (since the file already exists)
 - Load your CSV file from data/diseases_articles.csv
 - Preprocess the data - automatically detect the structure and create binary labels
 - Train both models - Full fine-tuning and LoRA
